@@ -1,7 +1,7 @@
 # Basics
 #
-FROM durdn/atlassian-base
-MAINTAINER Nicola Paolucci <npaolucci@atlassian.com>
+FROM mechatoni/trusty-java7
+MAINTAINER Toni Mecha <antonio.mecha@siqme.com>
 
 # Install Crowd
 

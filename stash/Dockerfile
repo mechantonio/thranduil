@@ -1,6 +1,6 @@
 # Basics
 #
-FROM mechatoni/atlassian-base
+FROM mechatoni/trusty-java7
 MAINTAINER Toni Mecha <antonio.mecha@siqme.com>
 
 # Install Stash
