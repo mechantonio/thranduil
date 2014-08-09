@@ -6,21 +6,8 @@ MAINTAINER Toni Mecha <antonio.mecha@siqme.com>
 # Make APT non-interactive
 ENV DEBIAN_FRONTEND noninteractive
 
-# prevent init scripts from running during install/update
-# policy-rc.d (for most scripts)
-RUN { \
-  echo '#!/bin/sh'; \
-  echo 'exit 101'; \
-} > /usr/sbin/policy-rc.d
-RUN chmod +x /usr/sbin/policy-rc.d
-
-# initctl (for some pesky upstart scripts)
-RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -sf /bin/true /sbin/initctl
-# see https://github.com/dotcloud/docker/issues/446#issuecomment-16953173
-
 # this forces dpkg not to call sync() after package extraction and speeds up install
-RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
+# RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 
 # # we don't need an apt cache in a container
 RUN { \
@@ -32,7 +19,7 @@ RUN { \
 } > /etc/apt/apt.conf.d/no-cache
 
 # and remove the translations, too
-RUN echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/no-languages
+# RUN echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/no-languages
 
 ## Enable Ubuntu Universe and Multiverse.
 RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
@@ -43,7 +30,7 @@ RUN apt-get update
 RUN apt-get dist-upgrade -y --no-install-recommends
 # Install packages needed for this image
 RUN apt-get install -y --no-install-recommends apt-transport-https ca-certificates
-RUN apt-get install -q -y git-core curl sudo xmlstarlet software-properties-common python-software-properties
+RUN apt-get install -y git-core curl sudo xmlstarlet software-properties-common python-software-properties
 
 # Install Java 7
 RUN apt-add-repository ppa:webupd8team/java -y

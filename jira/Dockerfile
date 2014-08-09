@@ -20,7 +20,6 @@ ENV JIRA_HOME /opt/atlassian-home
 ADD launch.bash /launch
 
 # Launching Jira
-
 WORKDIR /opt/jira
 VOLUME ["/opt/atlassian-home"]
 EXPOSE 8080
