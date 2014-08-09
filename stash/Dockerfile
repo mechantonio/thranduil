@@ -4,7 +4,6 @@ FROM mechatoni/trusty-java7
 MAINTAINER Toni Mecha <antonio.mecha@siqme.com>
 
 # Install Stash
-
 ENV STASH_VERSION 3.2.0
 RUN curl -Lks http://www.atlassian.com/software/stash/downloads/binary/atlassian-stash-${STASH_VERSION}.tar.gz -o /root/stash.tar.gz
 RUN /usr/sbin/useradd --create-home --home-dir /opt/stash --groups atlassian --shell /bin/bash stash
@@ -17,7 +16,6 @@ ENV CONTEXT_PATH ROOT
 ADD launch.bash /launch
 
 # Launching Stash
-
 WORKDIR /opt/stash
 VOLUME /opt/atlassian-home
 EXPOSE 7990 7999
