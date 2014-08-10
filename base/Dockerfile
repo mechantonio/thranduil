@@ -50,5 +50,5 @@ RUN chgrp atlassian /usr/local/share/atlassian/common.bash
 RUN chmod g+w /usr/local/share/atlassian/common.bash
 
 # Clean everything up
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /build
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* && rm -rf /var/tmp/*
+RUN rm -rf /build

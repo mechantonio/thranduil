@@ -1,6 +1,6 @@
 # Jira Docker image
 
-This folder contains the Dockerfile and associated files for the ```durdn/jira``` docker image which aims to make it a breeze getting an Atlassian Jira instance up and running.
+This folder contains the Dockerfile and associated files for the ```mechatoni/jira``` docker image which aims to make it a breeze getting an Atlassian Jira instance up and running.
 
 ## Database connection
 
