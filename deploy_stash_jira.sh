@@ -6,7 +6,7 @@ if [ -z "$DOCKER" ]; then
 fi
 if [ "$($DOCKER run busybox echo 'test')" != "test" ]; then
   SUDO=sudo
-  if [ "$($SUDO $DOCKER run busybox echo 'test')" != "test" ]; then
+  if [ "$($SUDO $DOCKER run --rm busybox echo 'test')" != "test" ]; then
     echo "Could not run $DOCKER"
     exit 1
   fi
@@ -33,7 +33,7 @@ cat initialise_db.sh | $SUDO $DOCKER run --rm -i --link postgres:db zaiste/postg
 STASH_VERSION="$($SUDO $DOCKER run --rm mechatoni/stash sh -c 'echo $STASH_VERSION')"
 $SUDO $DOCKER tag mechatoni/stash mechatoni/stash:$STASH_VERSION
 
-# $SUDO $DOCKER run -d --name stash --link postgres:db -p $STASH_EXTERNAL_PORT:7990 -p $STASH_EXTERNAL_PORT2:7999 mechatoni/stash
+$SUDO $DOCKER run -d --name stash --link postgres:db -p $STASH_EXTERNAL_PORT:7990 -p $STASH_EXTERNAL_PORT2:7999 mechatoni/stash
 
 # $SUDO $DOCKER build -t mechatoni/jira jira
 JIRA_VERSION="$($SUDO $DOCKER run --rm mechatoni/jira sh -c 'echo $JIRA_VERSION')"

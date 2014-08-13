@@ -30,7 +30,7 @@ RUN apt-get update
 RUN apt-get dist-upgrade -y --no-install-recommends
 # Install packages needed for this image
 RUN apt-get install -y --no-install-recommends apt-transport-https ca-certificates
-RUN apt-get install -y git-core curl sudo xmlstarlet software-properties-common python-software-properties
+RUN apt-get install -y git-core curl sudo xmlstarlet software-properties-common python-software-properties wget pwgen
 
 # Install Java 7
 RUN apt-add-repository ppa:webupd8team/java -y
