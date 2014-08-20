@@ -8,7 +8,8 @@ MAINTAINER Toni Mecha <antonio.mecha@siqme.com>
 ENV CONFLUENCE_VERSION 5.5.6
 RUN curl -Lks http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz -o /root/confluence.tar.gz
 RUN /usr/sbin/useradd --create-home --home-dir /opt/confluence --groups atlassian --shell /bin/bash confluence
-RUN tar zxf /root/confluence.tar.gz --strip=1 -C /opt/confluence
+RUN mkdir -p /opt/confluence/atlassian-confluence/
+RUN tar zxf /root/confluence.tar.gz --strip=1 -C /opt/confluence/atlassian-confluence/
 RUN chown -R confluence:confluence /opt/atlassian-home
 RUN echo "confluence.home = /opt/atlassian-home" > /opt/confluence/atlassian-confluence/WEB-INF/classes/confluence-init.properties
 RUN chown -R confluence:confluence /opt/confluence
