@@ -5,13 +5,10 @@ MAINTAINER Toni Mecha <antonio.mecha@siqme.com>
 
 # Install Tomcat
 
-ENV TOMCAT_VERSION 6.0.32
+ENV TOMCAT_VERSION 7.0.55
 ENV JAVA_HOME /usr/lib/jvm/java-7-oracle/
 
-RUN wget http://archive.apache.org/dist/tomcat/tomcat-6/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz
-# RUN curl -Lks http://archive.apache.org/dist/tomcat/tomcat-6/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz
-
-# RUN /usr/sbin/useradd --create-home --home-dir /opt/tomcat6 --groups atlassian --shell /bin/bash tomcat
+RUN wget http://apache.rediris.es/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz
 
 # UNpack
 RUN tar xzf /tmp/catalina.tar.gz -C /opt
@@ -33,6 +30,6 @@ EXPOSE 8009
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
-ENV DEPLOY_DIR /opt/tomcat6/deployable
+ENV DEPLOY_DIR /opt/tomcat/deployable
 
 CMD /opt/tomcat/bin/deploy_run.sh

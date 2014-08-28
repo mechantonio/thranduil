@@ -19,10 +19,10 @@
 # at the `psql` shell type:
 # 
 #     
-#     CREATE ROLE stashuser WITH LOGIN PASSWORD 'jellyfish' VALID UNTIL 'infinity';
-#     CREATE DATABASE stash WITH ENCODING='UTF8' OWNER=stashuser TEMPLATE=template0 CONNECTION LIMIT=-1;
+#     CREATE ROLE stashdbuser WITH LOGIN PASSWORD 'jellyfish' VALID UNTIL 'infinity';
+#     CREATE DATABASE stash WITH ENCODING='UTF8' OWNER=stashdbuser TEMPLATE=template0 CONNECTION LIMIT=-1;
 # 
-# The above creates `stash` database with `stashuser` user and password `jellyfish`. And for JIRA:
+# The above creates `stash` database with `stashdbuser` user and password `jellyfish`. And for JIRA:
 # 
 #     CREATE ROLE jiradbuser WITH LOGIN PASSWORD 'jellyfish' VALID UNTIL 'infinity';
 #     CREATE DATABASE jiradb WITH ENCODING 'UNICODE' TEMPLATE=template0;
@@ -43,9 +43,9 @@ echo "$PSQL_IP:*:*:docker:docker" > $HOME/.pgpass
 chmod 0600 $HOME/.pgpass
 
 echo "
-CREATE ROLE stashuser WITH LOGIN PASSWORD 'jellyfish' VALID UNTIL 'infinity';
-CREATE DATABASE stash WITH ENCODING='UTF8' OWNER=stashuser TEMPLATE=template0 CONNECTION LIMIT=-1;
+CREATE ROLE stashdbuser WITH LOGIN PASSWORD 'jellyfish' VALID UNTIL 'infinity';
+CREATE DATABASE stashdb WITH ENCODING='UTF8' OWNER=stashdbuser TEMPLATE=template0 CONNECTION LIMIT=-1;
 CREATE ROLE jiradbuser WITH LOGIN PASSWORD 'jellyfish' VALID UNTIL 'infinity';
-CREATE DATABASE jiradb WITH ENCODING 'UNICODE' TEMPLATE=template0;" \
+CREATE DATABASE jiradb WITH ENCODING 'UNICODE' OWNER=jiradbuser TEMPLATE=template0;" \
 PGPASSWORD="docker" psql -h $PSQL_IP -p $PSQL_PORT -d docker -U docker -w
 
